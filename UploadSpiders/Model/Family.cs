@@ -8,5 +8,9 @@ namespace UploadSpiders.Model
         public string? Name { get; set; }
         public string Id { get; set; }
 
+        public string ToJson()
+        {
+            return $"{{\"Id\"=\"{Id}\",\"Name\"=\"{Name}\"}}";
+        }
     }
 }

@@ -23,31 +23,50 @@ namespace FargateWebAPI.Controllers
         [HttpGet]
         public string Get()
         {
-            return "{}";
-        }
-
-        [HttpGet("family")]
-        public string Get(string family)
-        {
             string result = "";
             List<Family> families = new List<Family>();
-            using (var context = new SpidersContext(_parameters.Value.ConnectionString)) 
+            using (var context = new SpidersContext(_parameters.Value.ConnectionString))
             {
-                var all = context.Families.Where(x => x.Name == family).Select(x => x);
+                var all = context.Families.Select(x => x);
                 foreach (var f in all)
                 {
-                    if (f != null) 
+                    if (f != null)
                         families.Add(f);
                 }
             }
             result = "[";
             foreach (var f in families)
             {
-                result += $"{{\"Id\"=\"{f.Id}\",\"Name\"=\"{f.Name}\"}}";
+                result += f.ToJson();
             }
             result += "]";
             return result;
         }
+
+        [HttpGet("family")]
+        public string Get(string family)
+        {
+            string result = "";
+            List<Species> species = new List<Species>();
+            using (var context = new SpidersContext(_parameters.Value.ConnectionString)) 
+            {
+                var all = context.Species.Where(x => x.Family == family).Select(x => x);
+
+                foreach (var f in all)
+                {
+                    if (f != null) 
+                        species.Add(f);
+                }
+            }
+            result = "[";
+            foreach (var f in species)
+            {
+                result += f.ToJson();
+            }
+            result += "]";
+            return result;
+        }
+
 
         [HttpGet("family/genus")]
         public string Get(string family, string genus)
