@@ -8,3 +8,7 @@ This example is created to play with containers - Docker - and possibly Fargate.
 use of Parameter Store to store the connection string.
 
 It uses Entity Framework Core 6 (or whatever it's called these days) to connect to a MySql database.
+
+    dotnet ef dbcontext scaffold "<connectionstring>" Pomelo.EntityFrameworkCore.MySql -o TaxonomyModel
+
+    dotnet ef migrations add InitialCreate -o . -c TaxonomyDbContext

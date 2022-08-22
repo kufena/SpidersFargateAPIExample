@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,6 +6,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\Andrew Douglas\.nuget\packages\mysql.data.entityframework\8.0.30\contentFiles\any\netstandard2.1\app.config.transform" />
+    <Content Remove="C:\Users\Andrew Douglas\.nuget\packages\mysql.data.entityframework\8.0.30\contentFiles\any\netstandard2.1\web.config.transform" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
